@@ -11,6 +11,7 @@ class Client < ActiveRecord::Base
 	validates :phone, presence: true
 	validates :datestamp, presence: true
 	validates :color, presence: true
+
 end
 
 class Barber < ActiveRecord::Base 
@@ -48,4 +49,9 @@ end
 get '/bookings' do
 	@clients = Client.order('created_at DESC')
 	erb :bookings
+end
+
+get '/client/:id' do 
+	@client = Client.find(params[:id])
+	erb :client 
 end
